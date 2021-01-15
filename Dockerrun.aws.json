@@ -3,7 +3,7 @@
     "containerDefinitions": [
         {
             "essential": true,
-	    "memory": 128M,
+            "memory": 128,
             "image": "raymondhfeng/myproject:latest",
             "mountPoints": [
                 {
@@ -29,13 +29,13 @@
                 }
             ],
             "essential": true,
-	    "memory": 128M,
+            "memory": 128,
             "image": "postgres",
             "name": "db"
         },
         {
             "essential": true,
-	    "memory": 128M,
+            "memory": 128,
             "image": "nginx",
             "mountPoints": [
                 {
