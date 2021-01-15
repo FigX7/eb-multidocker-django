@@ -26,8 +26,7 @@
           "containerPath": "/var/www/html",
           "readOnly": true
         }
-      ],
-      "links": "db",
+      ]
     },
     {
       "essential": true,
