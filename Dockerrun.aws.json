@@ -20,6 +20,7 @@
       "image": "raymondhfeng/myproject:latest",
       "essential": true,
       "memory": 128,
+      "links": ["db"],
       "mountPoints": [
         {
           "sourceVolume": "app",
