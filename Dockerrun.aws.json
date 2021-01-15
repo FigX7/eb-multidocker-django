@@ -1,12 +1,67 @@
 {
-"AWSEBDockerrunVersion": "1",
-"Image": {
-  "Name": "raymondhfeng/myproject:latest",
-  "Update": "true"
-},
-"Ports": [
-  {
-    "ContainerPort":"8000"
-  }
-]
+    "AWSDockerrunVersion": 2,
+    "containerDefinitions": [
+        {
+            "essential": true,
+            "image": "raymondhfeng/myproject:latest",
+            "mountPoints": [
+                {
+                    "containerPath": "/app",
+                    "sourceVolume": "_App"
+                }
+            ],
+            "name": "app"
+        },
+        {
+            "environment": [
+                {
+                    "name": "POSTGRES_DB",
+                    "value": "postgres"
+                },
+                {
+                    "name": "POSTGRES_USER",
+                    "value": "postgres"
+                },
+                {
+                    "name": "POSTGRES_PASSWORD",
+                    "value": "postgres"
+                }
+            ],
+            "essential": true,
+            "image": "postgres",
+            "name": "db"
+        },
+        {
+            "essential": true,
+            "image": "nginx",
+            "mountPoints": [
+                {
+                    "containerPath": "/etc/nginx/conf.d",
+                    "sourceVolume": "_ConfigNginx"
+                }
+            ],
+            "name": "nginx",
+            "portMappings": [
+                {
+                    "containerPort": 8000,
+                    "hostPort": 8000
+                }
+            ]
+        }
+    ],
+    "family": "",
+    "volumes": [
+        {
+            "host": {
+                "sourcePath": "./app"
+            },
+            "name": "_App"
+        },
+        {
+            "host": {
+                "sourcePath": "./config/nginx"
+            },
+            "name": "_ConfigNginx"
+        }
+    ]
 }
