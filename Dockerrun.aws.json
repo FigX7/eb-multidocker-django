@@ -1,70 +1,63 @@
 {
-    "AWSEBDockerrunVersion": 2,
-    "containerDefinitions": [
+  "AWSEBDockerrunVersion": 2,
+  "volumes": [
+    {
+      "name": "app",
+      "host": {
+        "sourcePath": "/var/app/current/app"
+      }
+    },
+    {
+      "name": "nginx-proxy-conf",
+      "host": {
+        "sourcePath": "/var/app/current/config/nginx/conf.d"
+      }
+    }  
+  ],
+  "containerDefinitions": [
+    {
+      "name": "app",
+      "image": "raymondhfeng/myproject:latest",
+      "essential": true,
+      "memory": 128,
+      "mountPoints": [
         {
-            "essential": true,
-            "memory": 128,
-            "image": "raymondhfeng/myproject:latest",
-            "mountPoints": [
-                {
-                    "containerPath": "/app",
-                    "sourceVolume": "_App"
-                }
-            ],
-            "name": "app"
-        },
-        {
-            "environment": [
-                {
-                    "name": "POSTGRES_DB",
-                    "value": "postgres"
-                },
-                {
-                    "name": "POSTGRES_USER",
-                    "value": "postgres"
-                },
-                {
-                    "name": "POSTGRES_PASSWORD",
-                    "value": "postgres"
-                }
-            ],
-            "essential": true,
-            "memory": 128,
-            "image": "postgres",
-            "name": "db"
-        },
-        {
-            "essential": true,
-            "memory": 128,
-            "image": "nginx",
-            "mountPoints": [
-                {
-                    "containerPath": "/etc/nginx/conf.d",
-                    "sourceVolume": "_ConfigNginx"
-                }
-            ],
-            "name": "nginx",
-            "portMappings": [
-                {
-                    "containerPort": 8000,
-                    "hostPort": 8000
-                }
-            ]
+          "sourceVolume": "app",
+          "containerPath": "/var/www/html",
+          "readOnly": true
         }
-    ],
-    "family": "",
-    "volumes": [
+      ]
+    },
+    {
+      "name": "nginx-proxy",
+      "image": "nginx",
+      "essential": true,
+      "memory": 128,
+      "portMappings": [
         {
-            "host": {
-                "sourcePath": "./app"
-            },
-            "name": "_App"
+          "hostPort": 80,
+          "containerPort": 8000
+        }
+      ],
+      "links": [
+        "app"
+      ],
+      "mountPoints": [
+        {
+          "sourceVolume": "app",
+          "containerPath": "/var/www/html",
+          "readOnly": true
         },
         {
-            "host": {
-                "sourcePath": "./config/nginx"
-            },
-            "name": "_ConfigNginx"
+          "sourceVolume": "nginx-proxy-conf",
+          "containerPath": "/etc/nginx/conf.d",
+          "readOnly": true
+        },
+        {
+          "sourceVolume": "awseb-logs-nginx-proxy",
+          "containerPath": "/var/log/nginx"
         }
-    ]
+      ]
+    }
+  ]
 }
