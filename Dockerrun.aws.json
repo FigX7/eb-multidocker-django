@@ -28,6 +28,26 @@
         }
       ]
     },
+            {
+                "essential": true,
+                "memory": 128,
+                "image": "postgres",
+                "name": "db",
+                "environment": [
+                {
+                    "name": "POSTGRES_DB",
+                    "value": "postgres"
+                },
+                {
+                    "name": "POSTGRES_USER",
+                    "value": "postgres"
+                },
+                {
+                    "name": "POSTGRES_PASSWORD",
+                    "value": "postgres"
+                }
+            ]
+        },
     {
       "name": "nginx-proxy",
       "image": "nginx",
