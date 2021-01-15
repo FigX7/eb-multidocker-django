@@ -8,11 +8,6 @@ services:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-    # mem_limit: 128m
-    # deploy:
-    #  resources:
-    #    limits:
-    #      memory: 128M
 
   app:
     image: raymondhfeng/myproject:latest
@@ -23,26 +18,13 @@ services:
       - "8000"
     depends_on:
       - db
-    # mem_limit: 128m
-    # deploy:
-    #  resources:
-    #    limits:
-    #      memory: 128M
 
   nginx:
     image: nginx
     hostname: nginx
     ports:
       - "8000:8000"
-      # - "8000"
-      # - "5000:8000"
-      # - "80:8000"
     volumes:
       - ./config/nginx:/etc/nginx/conf.d
     depends_on:
       - app
-    # mem_limit: 128m
-    # deploy:
-    #  resources:
-    #    limits:
-    #      memory: 128M
