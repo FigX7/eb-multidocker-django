@@ -20,7 +20,6 @@
       "image": "figx7/myproject:latest",
       "essential": true,
       "memory": 128,
-      "links": ["db"],
       "mountPoints": [
         {
           "sourceVolume": "app",
@@ -28,12 +27,6 @@
           "readOnly": true
         }
       ]
-    },
-    {
-      "essential": true,
-      "memory": 128,
-      "image": "postgres",
-      "name": "db"
     },
     {
       "name": "nginx-proxy",
