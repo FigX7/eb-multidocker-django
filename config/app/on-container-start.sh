@@ -15,5 +15,5 @@ pipenv run python manage.py migrate
 pipenv run coverage run -m pytest
 pipenv run coverage html
 # start dev server
-pipenv run gunicorn --reload myproject.wsgi:application -b 0.0.0.0:8000
+pipenv run gunicorn --reload wsgi:application -b 0.0.0.0:8000
 
