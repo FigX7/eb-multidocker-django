@@ -1,13 +1,13 @@
-FROM python:3
-
-MAINTAINER Raymond Feng <raymondhfeng@gmail.com>
+FROM python:3.8
 
 ENV PYTHONUNBUFFERED 1
 
+# update pip and install pipenv
+RUN pip install -U pip
+RUN pip install pipenv
+
 RUN mkdir /config
 ADD config/app /config/
-
-RUN pip install -r /config/requirements.txt
 
 EXPOSE 8000
 
@@ -16,3 +16,5 @@ CMD ["sh","/config/on-container-start.sh"]
 RUN mkdir /app
 WORKDIR /app
 ADD app /app/
+
+RUN pipenv install --dev

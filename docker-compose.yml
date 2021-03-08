@@ -4,14 +4,19 @@ services:
   db:
     image: postgres
     hostname: db
-    environment:
-      - POSTGRES_DB=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+    env_file:
+      - .env
+    volumes:
+      - ./postgres/data:/var/lib/postgresql/data
 
   app:
-    image: raymondhfeng/myproject:latest
+    image: figx7/myproject:latest
     hostname: app
+    build:
+      context: .
+      dockerfile: ./config/app/Dockerfile
+    env_file:
+      - .env
     volumes:
       - ./app:/app
     expose:
@@ -26,5 +31,6 @@ services:
       - "8000:8000"
     volumes:
       - ./config/nginx:/etc/nginx/conf.d
+      - ./app/staticfiles:/static
     depends_on:
       - app
