@@ -1,7 +1,7 @@
 # EB-MULTIDOCKER-DJANGO
 > Sample Standalone Django Web Application
 
-This is a sample of a Django application serving the Front-End via views.
+This is a sample of a Django application serving the Front-End via views on AWS eleastic beanstalk
 
 ## Prerequisites
 
@@ -28,6 +28,7 @@ Base multidocker project forked from
 
 ## Road Map
 
-1. isolate project to django rest Back-End
-2. add ReactJS FE.
-3. extend project to EC2 for demo to amazon
+1. Add ssl certs
+2. isolate project to django rest Back-End
+3. add ReactJS FE.
+4. extend project to EC2 for demo to amazon
