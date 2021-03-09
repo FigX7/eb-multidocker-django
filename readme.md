@@ -37,3 +37,4 @@ Base multidocker project forked from
 1. Add ssl certs
 2. add ReactJS FE.
 3. extend project to EC2 for demo to amazon
+4. add pandas for excel data analysis
