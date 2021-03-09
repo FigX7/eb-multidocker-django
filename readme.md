@@ -28,6 +28,6 @@ Base multidocker project forked from
 
 ## Road Map
 
-1. isolaote project to django rest Back-End
+1. isolate project to django rest Back-End
 2. add ReactJS FE.
 3. extend project to EC2 for demo to amazon
