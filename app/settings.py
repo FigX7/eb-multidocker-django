@@ -36,7 +36,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    '_home'
+    # third part modules
+    'rest_framework',
+
+    # app modules
+    '_customer',
+    '_product',
+    '_order'
 ]
 
 MIDDLEWARE = [
@@ -123,9 +129,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# Add these new lines
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'app/static'),
 )
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
