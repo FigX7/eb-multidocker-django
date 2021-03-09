@@ -12,7 +12,7 @@ services:
       - "5437:5432"
 
   app:
-    image: figx7/myproject:latest
+    image: myproject:latest
     hostname: app
     build:
       context: .
