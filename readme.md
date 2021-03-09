@@ -15,6 +15,12 @@ This is a sample of a Django application serving the Front-End via views on AWS 
     - ```docker-compose up```
 - Open ```http://localhost:8000``` in browser
 
+## Endpoints
+
+- http://localhost:8000/customers/
+- http://localhost:8000/orders/
+- http://localhost:8000/products/
+
 ## Credits
 
 Base multidocker project forked from
@@ -29,6 +35,5 @@ Base multidocker project forked from
 ## Road Map
 
 1. Add ssl certs
-2. isolate project to django rest Back-End
-3. add ReactJS FE.
-4. extend project to EC2 for demo to amazon
+2. add ReactJS FE.
+3. extend project to EC2 for demo to amazon
